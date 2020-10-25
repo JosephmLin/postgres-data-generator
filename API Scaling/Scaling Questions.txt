@@ -1,0 +1,37 @@
+Player state has been exposed as an API endpoint using the SQL query you created in part one and Nodejs. 
+There are millions of rows in game_items, transactions and locations.
+How would you scale calculating player state for 50,000 concurrent requests? 
+Would you introduce any new technologies?
+
+Money Solutions:
+	I would buy more servers, hire more engineers, and QA staff. 
+
+Codestate Solutions:
+	Set up load balancer to ensure proper load between servers.
+	Test server breakdowns.
+	Utilize microservice architecture, to ensure a consistent uptime, and Separation of Concerns.
+	Use Functional Programming. This allows for higher code clarity.
+
+	Utilize tools (logging, load testing, stress testing libraries) to find bottlenecks, whether its in the 
+		frontend (identifying and potentially batching requests being made, minification, image asset optimization, designing non-blocking requests), 
+		backend (ensure proper cache keys, review database queries, review cross service requests, stress/load test), 
+		or database (review triggers/procedures, ensure indicies and keys are optimal, removing outdated data, reviewing db configurations).
+
+Team Solutions:
+	Enforce industry standards. We should be constantly learning from all of the available resources online, and applying these lessons to our code.
+	Make sure code base is in a scaleable/iterable state. This allows us to scale quickly by making sure each new microservice does not have a huge learning curve
+in order to understand it, as each of them should follow the same patterns. Over time, each developer will gain the knowledge to quickly write a microservice on their own.
+	Follow a CI/CD process that allows all developers to review each line of the code that enters the codebase. This allows for teamwide understanding of the code state.
+It also makes sure our cross-functional team are all on the same page. 
+
+List of Potential Technologies:
+	Frontend: Cucumber, Terser, Ramda (functional programming library)
+	Backend: NGINX load balancer, Express Node Balancer, Log4js or Winston (or one of many logging frameworks), loadtest, Ramda
+	Database: pgbench, pgreplaygo
+
+How would you reduce how long it takes the item locations query from part one to run? If the query is exposed as an API endpoint, how would you scale it for 50,000 concurrent requests?
+	I would precalculate the postGIS information prior to the actual call. Database should be focused more on querying, not trying to calculate a sphere.
+
+	A potential alternative would be to save the radius around each center point. However, this would be a comparison in performance between creating a sphere and 
+and querying to see which points lie in it, or seeing if one point lies in N amount of spheres. Which performs better requires experimenting. 
+	

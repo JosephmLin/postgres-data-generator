@@ -1,0 +1,4 @@
+psql
+\copy transactions FROM './csvsToCopy/transactions.csv' WITH DELIMITER ',' CSV HEADER;
+\copy locations FROM './csvsToCopy/locations.csv' WITH DELIMITER ',' CSV HEADER;
+\copy public.game_item_locations from './csvsToCopy/gameItemLocations.csv' with delimiter ',' CSV HEADER;

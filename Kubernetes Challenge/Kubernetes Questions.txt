@@ -1,0 +1,44 @@
+Part 3: Kubernetes Challenge
+You’ve been asked to containerize and deploy this API to GCP Kubernetes Engine. 
+Provide a written step-by-step guide on how you would build the docker image and deploy this to Kubernetes.
+This workload should be able to scale horizontally and serve 100k concurrent users. 
+How would you choose:
+-Container resource requests and limits
+-Probes
+-Autoscaler
+-Cluster node Instance type
+
+Steps:
+
+Download and install docker/kubernetes
+Set up a Dockerfile, which may have references to multiple APIs
+set up a script to run docker builds.
+
+Create pods for kubernetes
+
+Create a GCP Kubernetes project
+Clone git code onto GCP
+run code on GCP
+Create App on GCP
+deploy as many Apps as needed on GCP
+
+
+
+Container Resource Request/Limits. This would depend on the size of each request, and the size of the query. It would also depend on the number of nodes/pods we wanted to run.
+In the initial state, I would overestimate the size of each node. Here's a simple estimate:
+	Request:
+		Memory: 100Mib
+		CPU: 500m
+	Limit:
+		Memory: 500Mib
+		CPU: 1000m
+
+Probes:
+	We will need an HTTP probe to check whether our pod is live. This will ping a healthz path. Since we're serving requests, this is the most apt probe.
+
+Autoscaler:
+	Kubernetes has a Horizontal Pod Autoscaler which we can establish using `kubectl autoscale` as documented here: https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#autoscale.
+
+Cluster Node Instance Type:
+Based on google's breakdown for Machine Types, for delivering gaming information, we should be using a C2 Compute Optimized node. However, if this API is supposed to be meant for just general usage
+for the public website, or for guides online, a General Purpose E2 node would suffice. 
