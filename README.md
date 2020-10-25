@@ -1,12 +1,13 @@
 ### How to run these scripts
 
 Step 0:
-Have node/npm set up. Run npm install on the root.
+Have node/npm set up. Run `npm install` on the root.
+
 Step 1:
-Run node . to generate data. There are two command line arguments you can pass
---users
+Run `node .` to generate data. There are two command line arguments you can pass
+`--users`
 the number of user ids to generate
---entries
+`--entries`
 the number of entries per table to generate
 
 Step 2:
