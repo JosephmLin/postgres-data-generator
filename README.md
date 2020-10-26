@@ -20,3 +20,4 @@ As long as you are running the game item location data after locations have been
 ### TODO List
 
 Move all the Math.random mocking code into a jest config
+Add unit tests to `generateData.js`

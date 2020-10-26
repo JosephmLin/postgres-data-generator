@@ -14,7 +14,8 @@ Download and install docker/kubernetes
 Set up a Dockerfile, which may have references to multiple APIs
 set up a script to run docker builds.
 
-Create pods for kubernetes
+Create pods for kubernetes, 
+Set up YAML settings for both development and production environments
 
 Create a GCP Kubernetes project
 Clone git code onto GCP
